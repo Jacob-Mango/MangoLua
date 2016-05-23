@@ -21,7 +21,22 @@
     <ClInclude Include="luawrapperutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="luaclass.h">
+    <ClInclude Include="marshal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="unmarshal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="luafunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="luaconstructor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="luacall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mangolua.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

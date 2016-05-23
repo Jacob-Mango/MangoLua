@@ -121,9 +121,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="luaclass.h" />
+    <ClInclude Include="luacall.h" />
+    <ClInclude Include="mangolua.h" />
+    <ClInclude Include="luaconstructor.h" />
+    <ClInclude Include="luafunction.h" />
     <ClInclude Include="luawrapper.h" />
     <ClInclude Include="luawrapperutils.h" />
+    <ClInclude Include="marshal.h" />
+    <ClInclude Include="unmarshal.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

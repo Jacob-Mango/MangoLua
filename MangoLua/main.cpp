@@ -1,4 +1,4 @@
-#include "luaclass.h"
+#include "mangolua.h"
 #include <iostream>
 
 #include <string>
@@ -54,23 +54,28 @@ int main(int argc, char *argv[])
 		lua_pop(L, 1);
 	}
 
-	luaL_Reg D[] =
+	luaL_Reg Dc[] =
 	{
 		{ NULL, NULL }
 	};
 
-	luaL_Reg B[] =
+	luaL_Reg Bc[] =
 	{
 		{ "GetN", SCRIPT_METHOD(B::GetN) },
 		{ NULL, NULL }
 	};
 
-	luaL_Reg K[] =
+	luaL_Reg Kc[] =
 	{
 		{ "PrintN", SCRIPT_METHOD(K::PrintN) },
 		{ NULL, NULL }
 	};
-	luaW_register<B>(L, "B", D, K, WrapConstructor<K>(L));
-	luaW_register<K>(L, "K", D, K, WrapConstructor<K, B, std::string>(L));
-	return 1;
+	luaW_register<B>(L, "B", Dc, Bc);
+	luaW_register<K>(L, "K", Dc, Kc, WrapConstructor<K, B, std::string>);
+
+	B* b = new B();
+	CallFunction(L, "ch", &b, "Hey BB");
+
+	system("pause");
+	return 0;
 }
