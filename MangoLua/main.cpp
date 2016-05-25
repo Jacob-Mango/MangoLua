@@ -59,6 +59,11 @@ int main(int argc, char *argv[])
 		{ NULL, NULL }
 	};
 
+	luaL_Reg Hc[] =
+	{
+		{ NULL, NULL }
+	};
+
 	luaL_Reg Bc[] =
 	{
 		{ "GetN", SCRIPT_METHOD(B::GetN) },
@@ -70,11 +75,18 @@ int main(int argc, char *argv[])
 		{ "PrintN", SCRIPT_METHOD(K::PrintN) },
 		{ NULL, NULL }
 	};
-	luaW_register<B>(L, "B", Dc, Bc);
+
+	luaW_register<B>(L, "B", Hc, Bc, WrapConstructor<B>);
 	luaW_register<K>(L, "K", Dc, Kc, WrapConstructor<K, B, std::string>);
 
 	B* b = new B();
-	CallFunction(L, "ch", &b, "Hey BB");
+	
+	lua_getglobal(L, "ch");
+	luaW_push<B>(L, b);
+	lua_pushstring(L, "Hey");
+	lua_pcall(L, 2, 0, 0);
+
+	CallFunction(L, "ch", b, "Hey BB");
 
 	system("pause");
 	return 0;

@@ -11,7 +11,7 @@ struct Marshal
 {
 	static int Dispatch(lua_State* L, T value)
 	{
-		luaW_push<T>(L, &value);
+		luaW_push<T>(L, value);
 		return 1;
 	}
 };
@@ -42,6 +42,26 @@ struct Marshal<int>
 	static int Dispatch(lua_State* L, const int& value)
 	{
 		lua_pushnumber(L, value);
+		return 1;
+	}
+};
+
+template<>
+struct Marshal<char*>
+{
+	static int Dispatch(lua_State* L, const char* value)
+	{
+		lua_pushstring(L, value);
+		return 1;
+	}
+};
+
+template<>
+struct Marshal<std::string>
+{
+	static int Dispatch(lua_State* L, const std::string& value)
+	{
+		lua_pushstring(L, value.c_str());
 		return 1;
 	}
 };

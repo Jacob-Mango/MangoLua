@@ -7,13 +7,13 @@
 #endif
 
 template <typename First>
-void PassParameter(lua_State* L, int& index, First&& first) {
+void PassParameter(lua_State* L, int& index, First first) {
 	Marshal<First>::Dispatch(L, first);
 	index++;
 }
 
 template <typename First, typename... Args>
-void PassParameter(lua_State* L, int& index, First&& first, Args&&... args) {
+void PassParameter(lua_State* L, int& index, First first, Args... args) {
 	Marshal<First>::Dispatch(L, first);
 	index++;
 	if (sizeof...(Args))

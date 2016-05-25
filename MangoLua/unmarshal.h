@@ -19,9 +19,8 @@ struct Unmarshal
 template<>
 struct Unmarshal<double>
 {
-	static double&& Dispatch(lua_State* L, int index)
+	static double Dispatch(lua_State* L, int index)
 	{
-		assert(!lua_isnumber(L, index));
 		return (double)luaL_checknumber(L, index);
 	}
 };
@@ -29,9 +28,8 @@ struct Unmarshal<double>
 template<>
 struct Unmarshal<float>
 {
-	static float&& Dispatch(lua_State* L, int index)
+	static float Dispatch(lua_State* L, int index)
 	{
-		assert(!lua_isnumber(L, index));
 		return (float)luaL_checknumber(L, index);
 	}
 };
@@ -39,19 +37,26 @@ struct Unmarshal<float>
 template<>
 struct Unmarshal<int>
 {
-	static int&& Dispatch(lua_State* L, int index)
+	static int Dispatch(lua_State* L, int index)
 	{
-		assert(!lua_isnumber(L, index));
 		return (int)luaL_checknumber(L, index);
+	}
+};
+
+template<>
+struct Unmarshal<char*>
+{
+	static const char* Dispatch(lua_State* L, int index)
+	{
+		return luaL_checkstring(L, index);
 	}
 };
 
 template<>
 struct Unmarshal<std::string>
 {
-	static std::string&& Dispatch(lua_State* L, int index)
+	static std::string Dispatch(lua_State* L, int index)
 	{
-		assert(!lua_isstring(L, index));
-		return luaL_checkstring(L, index);
+		return std::string(luaL_checkstring(L, index));
 	}
 };

@@ -6,6 +6,12 @@
 #include "luawrapper.h"
 #endif
 
+template<class T>
+T* WrapConstructor(lua_State* L)
+{
+	return new T();
+}
+
 template<class T, typename P1>
 T* WrapConstructor(lua_State* L)
 {
