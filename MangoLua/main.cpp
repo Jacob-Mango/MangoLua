@@ -50,7 +50,8 @@ int main(int argc, char *argv[])
 	int errors = lua_pcall(L, 0, LUA_MULTRET, 0);
 	if (errors != 0)
 	{
-		std::cout << "Lua >> " << lua_tostring(L, -1);
+		std::string s(lua_tostring(L, -1));
+		std::cout << "Lua >> " << s << "\n";
 		lua_pop(L, 1);
 	}
 
@@ -80,11 +81,6 @@ int main(int argc, char *argv[])
 	luaW_register<K>(L, "K", Dc, Kc, WrapConstructor<K, B, std::string>);
 
 	B* b = new B();
-	
-	lua_getglobal(L, "ch");
-	luaW_push<B>(L, b);
-	lua_pushstring(L, "Hey");
-	lua_pcall(L, 2, 0, 0);
 
 	CallFunction(L, "ch", b, "Hey BB");
 

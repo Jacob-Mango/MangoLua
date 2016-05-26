@@ -248,7 +248,7 @@ T* luaW_opt(lua_State* L, int index, T* fallback = NULL, bool strict = false)
 // Pushes a userdata of type T onto the stack. If this object already exists in
 // the Lua environment, it will assign the existing storage table to it.
 // Otherwise, a new storage table will be created for it.
-template <typename T>
+template <class T>
 void luaW_push(lua_State* L, T* obj)
 {
 	if (obj)

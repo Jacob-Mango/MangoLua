@@ -4,6 +4,7 @@
 #define LUA_H
 #include <lua.hpp>
 #include "luawrapper.h"
+#include "luawrapperutils.h"
 #endif
 
 template<class T>

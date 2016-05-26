@@ -4,6 +4,7 @@
 #define LUA_H
 #include <lua.hpp>
 #include "luawrapper.h"
+#include "luawrapperutils.h"
 #endif
 
 template<typename T>
@@ -25,7 +26,7 @@ struct FunctionWrapper<R(T::*)(Args...)>
 		return [](lua_State *L)
 		{
 			T* obj = luaW_check<T>(L, 1);
-			Marshal<std::remove_const<R>::type>::Dispatch(L, (obj->*method)(Unmarshal<Args>::Dispatch(L, index + 2)...));
+			Marshal::Dispatch(L, (obj->*method)(Unmarshal<Args>::Dispatch(L, index + 2)...));
 			return 1;
 		};
 	}
