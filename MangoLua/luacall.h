@@ -27,6 +27,6 @@ void CallFunction(lua_State* L, const char* func, Args&&... args) {
 	PassParameter(L, index, std::forward<Args>(args)...);
 	if (lua_pcall(L, index, 0, 0) != 0) {
 		std::string s(lua_tostring(L, -1));
-		std::cout << "Lua: error running function \'" << func << "\': " << s << "\n";
+		std::cout << "Lua: error running function \'" << func << "\': " << s << std::endl;
 	}
 }

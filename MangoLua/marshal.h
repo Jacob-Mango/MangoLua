@@ -45,4 +45,11 @@ struct Marshal
 		luaW_push<T>(L, value);
 		return 1;
 	}
+
+	template<class T>
+	static int Dispatch(lua_State* L, T value)
+	{
+		luaW_push<T>(L, &value);
+		return 1;
+	}
 };

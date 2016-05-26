@@ -1,4 +1,3 @@
-function ch(s, n)
-	k = K.new(s, n)
-	k:PrintN()
+function ch(s)
+	s:SetX(2)
 end
